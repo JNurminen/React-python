@@ -10,5 +10,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # estää turhat SQL kysely
 
 db = SQLAlchemy(app) # luodaan SQLAlchemy tietokanta
 
+import routes # tuodaan routes.py tiedosto
+
+with app.app_context():
+    db.create_all() # luodaan tietokantataulut
+
 if __name__ == '__main__':
     app.run(debug=True) # käynnistetään sovellus debug tilassa
