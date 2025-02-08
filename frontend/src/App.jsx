@@ -1,11 +1,16 @@
+import { Container, HStack } from "@chakra-ui/react";
+import { Navbar } from "./components/Navbar";
 
 function App() {
-
   return (
-    <>
-      <h1>Hello</h1>
-    </>
-  )
+    <HStack minH={"100vh"} align={"stretch"} >
+      <Navbar />
+
+      <Container maxW={"1200px"} my={4}>
+        
+      </Container>
+    </HStack>
+  );
 }
 
-export default App
+export default App;
