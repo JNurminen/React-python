@@ -6,7 +6,7 @@ const FriendForm = ({ addFriend }) => {
     const [description, setDescription] = useState("");
     const [gender, setGender] = useState("");
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         
         const data = {
@@ -15,7 +15,7 @@ const FriendForm = ({ addFriend }) => {
             description,
             gender
         };
-        const url = (`${BASE_URL}/create_friend`);
+        const url = "http://localhost:5000/friends";
         const options = {
             method: "POST",
             headers: {
@@ -23,7 +23,13 @@ const FriendForm = ({ addFriend }) => {
             },
             body: JSON.stringify(data)
         };
-        };
+        const response = await fetch(url, options);
+        if(response.status !== 201 && response.status !== 200) {
+            const data = await response.json();
+            alert(data.message);
+        } else {
+            // success
+        }
     }
 
     return (

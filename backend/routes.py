@@ -11,7 +11,7 @@ def get_friends():
 
 
 # luodaan uusi ystävä
-@app.route('/api/friends', methods=['POST'])
+@app.route('/friends', methods=['POST'])
 def create_friend():
     try:
         data = request.get_json() # haetaan pyynnön mukana tuleva data
@@ -48,7 +48,7 @@ def create_friend():
         return jsonify({"Error": str(e)}),500 # palautetaan virheilmoitus
 
 # poistetaan ystävä
-@app.route('/api/friends/<int:id>', methods=['DELETE'])
+@app.route('/friends/<int:id>', methods=['DELETE'])
 def delete_friend(id):
     try:
         friend = Friend.query.get(id) # haetaan ystävä id:n perusteella
@@ -64,7 +64,7 @@ def delete_friend(id):
         return jsonify({"Error": str(e)}),500 # palautetaan virheilmoitus
           
 # päivitetään ystävän tiedot
-@app.route('/api/friends/<int:id>', methods=['PUT'])
+@app.route('/friends/<int:id>', methods=['PUT'])
 def update_friend(id):
     try:
         friend = Friend.query.get(id) # haetaan ystävä id:n perusteella
