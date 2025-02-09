@@ -1,16 +1,25 @@
-import { Container, HStack } from "@chakra-ui/react";
-import { Navbar } from "./components/Navbar";
+import { useState, useEffect } from 'react';
+import FriendList from './FriendList';
+import './App.css';
+
+export const BASE_URL = import.meta.env.MODE === "development" ? "http://127.0.0.1:5000/api" : "/api";
+
 
 function App() {
-  return (
-    <HStack minH={"100vh"} align={"stretch"} >
-      <Navbar />
+  const [friends, setFriends] = useState([]);
 
-      <Container maxW={"1200px"} my={4}>
-        
-      </Container>
-    </HStack>
-  );
+  useEffect(() => {
+    //fetchFriends();
+  }, []);
+
+  const fetchFriends = async () => {
+    const response = await fetch(`${BASE_URL}/friends/`);
+    const data = await response.json();
+    setFriends(data.friends);
+    console.log(data.contacts);
+  };
+
+  return <FriendList friends={friends} />;
 }
 
 export default App;
