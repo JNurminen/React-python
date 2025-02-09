@@ -3,11 +3,11 @@ from flask import request, jsonify
 from models import Friend
 
 # haetaan kaikki ystävät
-@app.route('/friends', methods=['GET'])
+@app.route('/api/friends', methods=['GET'])
 def get_friends():
     friends = Friend.query.all() # haetaan kaikki ystävät
-    result = [friend.to_json() for friend in friends] # muutetaan ystävät JSON muotoon
-    return jsonify(result) # palautetaan JSON muotoinen lista ystävistä
+    json_friends = list(map(lambda x: x.to_jason(), friends)) # lista johon ystävät tallennetaan
+    return jsonify({"friends":json_friends}),200 # palautetaan ystävät JSON muodossa
 
 
 # luodaan uusi ystävä

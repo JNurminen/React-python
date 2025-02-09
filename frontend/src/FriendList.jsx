@@ -1,6 +1,23 @@
 import React from "react";
 
-const FriendList = ({ friends }) => {
+const FriendList = ({ friends, updateFriend, updateCallback }) => {
+    const onDelete = async (id) => {
+        try {
+            const options = {
+                method: "DELETE"
+            };
+            const response = await fetch (`http://127.0.0.1:5000/delete_friend/${id}`, options);
+            if(response.status === 204) {
+                updateCallback();
+            } else {
+                console.error("Failed to delete friend");
+            }
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+
   return (
     <div>
       <h1>Friends</h1>
@@ -22,8 +39,8 @@ const FriendList = ({ friends }) => {
                     <td>{friend.description}</td>
                     <td>{friend.email}</td>
                     <td>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={() => updateFriend(friend)}>Update</button>
+                        <button onClick={() => onDelete(friend.id)}>Delete</button>
                     </td>
                 </tr>
             ))}

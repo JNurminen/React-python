@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-const FriendForm = ({ addFriend }) => {
-    const [name, setName] = useState("");
-    const [role, setRole] = useState("");
-    const [description, setDescription] = useState("");
-    const [email, setEmail] = useState("");
+const FriendForm = ({ existingFriend = {}, updateCallback }) => {
+    const [name, setName] = useState(existingFriend.name || "");
+    const [role, setRole] = useState(existingFriend.role || "");
+    const [description, setDescription] = useState(existingFriend.description || "");
+    const [email, setEmail] = useState(existingFriend.email || "");
+
+    const updating = Object.entries(existingFriend).length !== 0;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -15,9 +17,9 @@ const FriendForm = ({ addFriend }) => {
             description,
             email
         };
-        const url = "http://localhost:5000/friends";
+        const url = "http://localhost:5000/" + (updating ? `update_friend/${existingFriend._id}` : "create_friend");
         const options = {
-            method: "POST",
+            method: updating ? "PATCH":"POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -28,7 +30,7 @@ const FriendForm = ({ addFriend }) => {
             const data = await response.json();
             alert(data.message);
         } else {
-            // success
+            updateCallback();
         }
     }
 
@@ -50,7 +52,7 @@ const FriendForm = ({ addFriend }) => {
                 <label htmlFor="email">Email</label>
                 <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <button type="submit">Create Friend</button>
+            <button type="submit">{updating ? "Update" : "Create"}</button>
         </form>
     )
 };
