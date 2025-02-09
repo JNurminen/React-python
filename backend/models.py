@@ -6,8 +6,7 @@ class Friend(db.Model):
     name = db.Column(db.String(100), nullable=False) # nimi ei voi olla tyhjä
     role = db.Column(db.String(50), nullable=False) # rooli ei voi olla tyhjä
     description = db.Column(db.Text, nullable=False) # kuvaus ei voi olla tyhjä
-    gender = db.Column(db.String(10), nullable=False) # sukupuoli ei voi olla tyhjä
-    img_url = db.Column(db.String(200), nullable=True) # kuvan url ei ole pakollinen
+    email = db.Column(db.String(10), nullable=False) # sukupuoli ei voi olla tyhjä
 
     # Luodaan metodi joka palauttaa Friend taulun tiedot JSON muodossa
     def to_json(self):
@@ -16,6 +15,5 @@ class Friend(db.Model):
             'name': self.name,
             'role': self.role,
             'description': self.description,
-            'gender': self.gender,
-            'imgUrl': self.img_url
+            'email': self.email,
         }

@@ -10,7 +10,7 @@ const FriendList = ({ friends }) => {
                 <th>Name</th>
                 <th>Role</th>
                 <th>Description</th>
-                <th>Gender</th>
+                <th>Email</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,7 +20,7 @@ const FriendList = ({ friends }) => {
                     <td>{friend.name}</td>
                     <td>{friend.role}</td>
                     <td>{friend.description}</td>
-                    <td>{friend.gender}</td>
+                    <td>{friend.email}</td>
                     <td>
                         <button>Edit</button>
                         <button>Delete</button>

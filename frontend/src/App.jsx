@@ -16,17 +16,29 @@ function App() {
     const response = await fetch('http://localhost:5000/friends');
     const data = await response.json();
     setFriends(data.friends);
-    console.log(data.contacts);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  const openCreateModal = () => {
+    if(!isModalOpen) setIsModalOpen(true);
+  };
+
+
   return (
     <>
     <FriendList friends={friends} />
-    <FriendForm />
+    <button onClick={openCreateModal}>Create Friend</button>
+    {isModalOpen && <div className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={closeModal}>&times;</span>
+        <FriendForm />
+      <FriendForm />
+      </div>
+    </div>
+      }
     </>
   )
 }

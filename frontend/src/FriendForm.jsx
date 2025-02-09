@@ -4,7 +4,7 @@ const FriendForm = ({ addFriend }) => {
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
     const [description, setDescription] = useState("");
-    const [gender, setGender] = useState("");
+    const [email, setEmail] = useState("");
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -13,7 +13,7 @@ const FriendForm = ({ addFriend }) => {
             name,
             role,
             description,
-            gender
+            email
         };
         const url = "http://localhost:5000/friends";
         const options = {
@@ -47,8 +47,8 @@ const FriendForm = ({ addFriend }) => {
                 <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
             </div>
             <div>
-                <label htmlFor="gender">Gender</label>
-                <input type="text" id="gender" value={gender} onChange={(e) => setGender(e.target.value)} />
+                <label htmlFor="email">Email</label>
+                <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <button type="submit">Create Friend</button>
         </form>

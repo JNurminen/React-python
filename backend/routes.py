@@ -17,7 +17,7 @@ def create_friend():
         data = request.get_json() # haetaan pyynnön mukana tuleva data
 
         # tarkistetaan että kaikki pakolliset kentät ovat datassa
-        required_fields = ['name', 'role', 'description', 'gender'] # pakolliset kentät
+        required_fields = ['name', 'role', 'description', 'email'] # pakolliset kentät
         for field in required_fields:
             if field not in data: # jos pakollista kenttää ei ole datassa
                 return jsonify({"Error": f"Missing required field: {field} is required"}),400 # palautetaan virheilmoitus
@@ -25,18 +25,10 @@ def create_friend():
         name = data.get('name') # haetaan nimi datasta
         role = data.get('role') # haetaan rooli datasta
         description = data.get('description') # haetaan kuvaus data
-        gender = data.get('gender') # haetaan sukupuoli datasta
-
-        # haetaan avatar kuva sukupuolen perusteella
-        if gender == "male":
-            img_url = f"https://avatar.iran.liara.run/public/boy?username={name}"
-        elif gender == "female":
-            img_url = f"https://avatar.iran.liara.run/public/girl?username={name}"
-        else:
-            img_url = None
+        email = data.get('email') # haetaan sukupuoli datasta
 
         # luodaan uusi ystävä
-        new_friend = Friend(name=name, role=role, description=description, gender=gender, img_url=img_url)
+        new_friend = Friend(name=name, role=role, description=description, email=email)
 
         db.session.add(new_friend) # lisätään uusi ystävä tietokantaan
         db.session.commit() # tallennetaan muutokset tietokantaan
@@ -77,7 +69,7 @@ def update_friend(id):
         friend.name = data.get('name', friend.name) # päivitetään nimi
         friend.role = data.get('role', friend.role) # päivitetään rooli
         friend.description = data.get('description', friend.description) # päivitetään työnkuva
-        friend.gender = data.get('gender', friend.gender) # päivitetään sukupuoli
+        friend.email = data.get('email', friend.email) # päivitetään sähköposti
 
         db.session.commit() # tallennetaan muutokset tietokantaan
         return jsonify({"msg":"Friend updated succesfully"}),200 # palautetaan onnistumisviesti
