@@ -19,13 +19,13 @@ const FriendList = ({ friends, updateFriend, updateCallback }) => {
 
 
   return <div>
-      <h1>Friends</h1>
+      <h1>Contacts</h1>
       <table>
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Role</th>
-                <th>Description</th>
+                <th>Job Description</th>
                 <th>Gender</th>
                 <th>Actions</th>
             </tr>

@@ -15,7 +15,7 @@ def create_friend():
     name = request.json.get('name') # haetaan nimi
     role = request.json.get('role') # haetaan rooli
     description = request.json.get('description') # haetaan työnkuva
-    gender = request.json.get('gender') # haetaan sähköposti
+    gender = request.json.get('gender') # haetaan sukupuoli
 
     if not name or not role or not description or not gender: # jos jokin tieto puuttuu
         return jsonify({"message": "Please provide all information"}), 400 # palautetaan virheilmoitus
@@ -56,7 +56,7 @@ def update_friend(id):
     friend.name = data.get('name', friend.name) # päivitetään nimi
     friend.role = data.get('role', friend.role) # päivitetään rooli
     friend.description = data.get('description', friend.description) # päivitetään työnkuva
-    friend.gender = data.get('gender', friend.gender) # päivitetään sähköposti
+    friend.gender = data.get('gender', friend.gender) # päivitetään sukupuoli
 
     db.session.commit() # tallennetaan muutokset tietokantaan
     return jsonify({"message": "Friend updated successfully"}), 200 # palautetaan onnistumisviesti

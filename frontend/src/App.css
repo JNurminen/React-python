@@ -7,7 +7,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0,0, 0.4);
-  cursor: pointer;
+
 }
 
 .modal-content {
@@ -15,7 +15,7 @@
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 45%;
 }
 
 .close {
@@ -23,4 +23,5 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
 }
