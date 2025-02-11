@@ -35,8 +35,8 @@ function App() {
   };
 
   const onUpdate = () => {
-    fetchFriends();
     closeModal();
+    fetchFriends();
   };
 
   return (

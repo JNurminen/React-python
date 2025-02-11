@@ -7,7 +7,7 @@ const FriendList = ({ friends, updateFriend, updateCallback }) => {
                 method: "DELETE"
             };
             const response = await fetch (`http://127.0.0.1:5000/delete_friend/${id}`, options);
-            if(response.status === 204) {
+            if(response.status === 200) {
                 updateCallback();
             } else {
                 console.error("Failed to delete friend");
@@ -18,8 +18,7 @@ const FriendList = ({ friends, updateFriend, updateCallback }) => {
     }
 
 
-  return (
-    <div>
+  return <div>
       <h1>Friends</h1>
       <table>
         <thead>
@@ -27,7 +26,7 @@ const FriendList = ({ friends, updateFriend, updateCallback }) => {
                 <th>Name</th>
                 <th>Role</th>
                 <th>Description</th>
-                <th>Email</th>
+                <th>Gender</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,7 +36,7 @@ const FriendList = ({ friends, updateFriend, updateCallback }) => {
                     <td>{friend.name}</td>
                     <td>{friend.role}</td>
                     <td>{friend.description}</td>
-                    <td>{friend.email}</td>
+                    <td>{friend.gender}</td>
                     <td>
                         <button onClick={() => updateFriend(friend)}>Update</button>
                         <button onClick={() => onDelete(friend.id)}>Delete</button>
@@ -47,7 +46,7 @@ const FriendList = ({ friends, updateFriend, updateCallback }) => {
         </tbody>
       </table>
     </div>
-    );
+    
 }
 
 export default FriendList;

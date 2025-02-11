@@ -4,7 +4,7 @@ const FriendForm = ({ existingFriend = {}, updateCallback }) => {
     const [name, setName] = useState(existingFriend.name || "");
     const [role, setRole] = useState(existingFriend.role || "");
     const [description, setDescription] = useState(existingFriend.description || "");
-    const [email, setEmail] = useState(existingFriend.email || "");
+    const [gender, setGender] = useState(existingFriend.gender || "");
 
     const updating = Object.entries(existingFriend).length !== 0;
 
@@ -15,9 +15,9 @@ const FriendForm = ({ existingFriend = {}, updateCallback }) => {
             name,
             role,
             description,
-            email
+            gender
         };
-        const url = "http://localhost:5000/" + (updating ? `update_friend/${existingFriend._id}` : "create_friend");
+        const url = "http://localhost:5000/" + (updating ? `update_friend/${existingFriend.id}` : "create_friend");
         const options = {
             method: updating ? "PATCH":"POST",
             headers: {
@@ -49,8 +49,8 @@ const FriendForm = ({ existingFriend = {}, updateCallback }) => {
                 <input type="text" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
             </div>
             <div>
-                <label htmlFor="email">Email</label>
-                <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <label htmlFor="gender">Gender</label>
+                <input type="text" id="gender" value={gender} onChange={(e) => setGender(e.target.value)} />
             </div>
             <button type="submit">{updating ? "Update" : "Create"}</button>
         </form>
