@@ -1,13 +1,12 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f0f0f5;
+  background-color: lightgray;
   -webkit-font-smoothing: antialiased;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 20px;
-  background-image: url("/public/IMG.jpg");
 }
 
 h2 {
