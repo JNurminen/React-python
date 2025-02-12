@@ -52,7 +52,7 @@ const FriendForm = ({ existingFriend = {}, updateCallback }) => {
                 <label htmlFor="gender">Gender</label>
                 <input type="text" id="gender" value={gender} onChange={(e) => setGender(e.target.value)} />
             </div>
-            <button type="submit">{updating ? "Update" : "Create"}</button>
+            <button type="submit" data-testid="submit-button">{updating ? "Update" : "Create"}</button>
         </form>
     )
 };

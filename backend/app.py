@@ -16,5 +16,9 @@ db = SQLAlchemy(app) # luodaan SQLAlchemy tietokanta
 #with app.app_context():
     #db.create_all() # luodaan tietokantataulut
 
-#if __name__ == '__main__':
+#if __name__ == "__main__":
+    #with app.app_context():
+        #db.create_all()
+
+    #app.run(debug=True) # käynnistetään sovellus debug tilassa
     #app.run(debug=True) # käynnistetään sovellus debug tilassa
