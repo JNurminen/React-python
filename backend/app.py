@@ -21,3 +21,10 @@ def index(filename): # luodaan index funktio
         filename = 'index.html' # määritetään index.html
     return send_from_directory(dist_folder, filename) # palautetaan tiedosto
 
+import routes
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+
+    app.run(host='0.0.0.0', port=5000, debug=True)
