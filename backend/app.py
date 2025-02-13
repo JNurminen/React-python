@@ -4,9 +4,9 @@ from flask_cors import CORS
 import os
 
 app = Flask(__name__) # luodaan Flask  sovellus
-#CORS(app) # lisätään CORS sovellukseen
+CORS(app) # lisätään CORS sovellukseen
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db' # luo tietokannan friends.db
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv('DATABASE_URL', 'sqlite:///friends.db') # luo tietokannan friends.db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # estää turhat SQL kyselyt
 
 db = SQLAlchemy(app) # luodaan SQLAlchemy tietokanta
@@ -22,10 +22,10 @@ def index(filename):
     filename = "index.html"
   return send_from_directory(dist_folder,filename)
 
-import routes # tuodaan routes.py tiedosto
-
-with app.app_context():
-  db.create_all()
+import routes
 
 if __name__ == "__main__":
-  app.run(debug=True) # käynnistetään sovellus debug tilassa
+    with app.app_context():
+        db.create_all()
+
+    app.run(host='0.0.0.0', port=5000, debug=True)

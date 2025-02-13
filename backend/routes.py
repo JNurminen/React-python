@@ -61,7 +61,6 @@ def update_friend(id):
     db.session.commit() # tallennetaan muutokset tietokantaan
     return jsonify({"message": "Friend updated successfully"}), 200 # palautetaan onnistumisviesti
 
-#import routes
 
 #if __name__ == "__main__":
     #with app.app_context():
