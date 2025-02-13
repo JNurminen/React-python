@@ -17,7 +17,7 @@ const FriendForm = ({ existingFriend = {}, updateCallback }) => {
             description,
             gender
         };
-        const url = process.env.REACT_APP_BACKEND_URL + (updating ? `update_friend/${existingFriend.id}` : "create_friend");
+        const url = "http://127.0.0.1:5000/" + (updating ? `update_friend/${existingFriend.id}` : "create_friend");
         const options = {
             method: updating ? "PATCH":"POST",
             headers: {
