@@ -3,6 +3,7 @@ import FriendList from './FriendList';
 import './App.css';
 import FriendForm from './FriendForm';
 
+export const BASE_URL = import.meta.env.MODE === 'development' ? 'http://127.0.0.1:5000/api' : '/api';
 
 function App() {
   const [friends, setFriends] = useState([]);

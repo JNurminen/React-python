@@ -20,3 +20,4 @@ def index(filename): # luodaan index funktio
     if not filename:
         filename = 'index.html' # määritetään index.html
     return send_from_directory(dist_folder, filename) # palautetaan tiedosto
+
