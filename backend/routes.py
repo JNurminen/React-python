@@ -62,8 +62,8 @@ def update_friend(id):
     return jsonify({"message": "Friend updated successfully"}), 200 # palautetaan onnistumisviesti
 
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
+#if __name__ == "__main__":
+    #with app.app_context():
+        #db.create_all()
 
-    app.run(host='0.0.0.0', port=5000, debug=True) # käynnistetään sovellus debug tilassa
+    #app.run(host='0.0.0.0', port=5000, debug=True) # käynnistetään sovellus debug tilassa
